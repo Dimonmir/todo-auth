@@ -7,7 +7,7 @@ import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getAnalytics } from "firebase/analytics";
       
-const firebaseConfig = {
+const firebaseConfigAuth = {
       apiKey: "AIzaSyAxjLl7b4OKGTw-vFURnKa-_DNaIbPXH70",
       authDomain: "diimonmir-auth.firebaseapp.com",
       projectId: "diimonmir-auth",
@@ -17,7 +17,19 @@ const firebaseConfig = {
       measurementId: "G-JGWGBXE7C3"
 };
 
-const app = initializeApp(firebaseConfig);
+const firebaseConfig = {
+      apiKey: "AIzaSyBoOrseZ30PwwfcRdj8U6c3CtxKxY18lMs",
+      authDomain: "todo-c6967.firebaseapp.com",
+      projectId: "todo-c6967",
+      storageBucket: "todo-c6967.appspot.com",
+      messagingSenderId: "737063277768",
+      appId: "1:737063277768:web:fa423413d4ee0579bb01fd",
+      measurementId: "G-2JSFJZBFTP"
+};
+
+export const appAuth = initializeApp(firebaseConfigAuth);
+export const app = initializeApp(firebaseConfigAuth);
+const analyticsAuth = getAnalytics(appAuth);
 const analytics = getAnalytics(app);
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(

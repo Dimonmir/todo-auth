@@ -1,15 +1,20 @@
-import { ThemeProvider } from '@emotion/react';
-import { themeMain } from './app/ui/theme';
+import WithRouter from './app/routes/routes';
+import { Provider } from 'react-redux';
+import { store } from './app/store';
+import styledTheme from './app/ui/themeStyled';
+import { ThemeProvider } from 'styled-components';
+import GlobalStyle from './app/ui/GlobalStyle';
 
-import { RouterProvider } from 'react-router-dom';
-import router from './app/routes/routes';
 
 
 function App() {
   return (
-    <ThemeProvider theme={themeMain}>
-      <RouterProvider router={router} />
-    </ThemeProvider>
+    <Provider store={store}>
+      <ThemeProvider theme={styledTheme}>
+        <GlobalStyle />
+        <WithRouter />
+      </ThemeProvider>
+    </Provider>
   )
 }
 

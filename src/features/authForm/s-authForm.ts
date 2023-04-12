@@ -1,7 +1,7 @@
+import { Form } from "antd"
 import styled from "styled-components"
-import { Box } from "@mui/material";
 
-export const BoxForm = styled("form")`
+export const SForm = styled(Form)`
     display: flex;
     flex-direction: column;
     gap: 20px;

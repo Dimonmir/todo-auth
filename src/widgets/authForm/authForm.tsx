@@ -1,19 +1,17 @@
-import { Avatar, Box, Typography } from '@mui/material'
 import React from 'react'
 import { BoxAuth } from './s-authForm'
 import features from '@features/index'
+import { Avatar, Typography } from 'antd'
 
 export const AuthForm = () => {
   return (
     <BoxAuth>
-      <Box className="authHeader">
+      <div className="authHeader">
         <Avatar
-          alt="Remy Sharp"
-          src="../../public/myLogo.jpg"
-          sx={{ width: 66, height: 66 }}
+          icon="../../myLogo.jpg"
         />
-        <Typography variant="h4"> Авторизация </Typography>
-      </Box>
+        <Typography.Title level={3} >h3. Ant Design</Typography.Title>
+      </div>
       <features.AuthForm />
     </BoxAuth>
   )

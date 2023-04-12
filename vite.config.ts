@@ -6,13 +6,13 @@ import path from 'path';
 export default defineConfig({
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './src'),
-      '@page': path.resolve(__dirname, './src/page'),
-      '@widgets': path.resolve(__dirname, './src/widgets'),
-      '@features': path.resolve(__dirname, './src/features'),
-      '@entities': path.resolve(__dirname, './src/entities'),
-      '@shared': path.resolve(__dirname, './src/shared'),
-      '@public': path.resolve(__dirname, './public'),
+      '@': path.resolve(__dirname, 'src'),
+      '@features': path.resolve(__dirname, 'src/features'),
+      '@api': path.resolve(__dirname, 'src/api'),
+      '@shared': path.resolve(__dirname, 'src/shared'),
+      '@pages': path.resolve(__dirname, 'src/pages'),
+      '@widgets': path.resolve(__dirname, 'src/widgets'),
+      '@entities': path.resolve(__dirname, 'src/entities'),
     },
   },
   plugins: [react()],

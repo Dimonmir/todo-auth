@@ -1,3 +1,5 @@
+
+import { appAuth } from '@/main';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import * as yup from 'yup';
 
@@ -13,7 +15,7 @@ export const validationSchema = yup.object({
 });
 
 export const authTry = async (email: string, password: string) => {
-    const auth = getAuth();
+    const auth = getAuth(appAuth);
     await signInWithEmailAndPassword(auth, email, password)
     .then((userCredential) => {
         const user = userCredential.user;

@@ -1,7 +1,6 @@
 import styled from "styled-components"
-import { Box } from "@mui/material";
 
-export const BoxAuth = styled(Box)`
+export const BoxAuth = styled('div')`
     width: 20%;
     padding: 40px 30px;
     display: flex;

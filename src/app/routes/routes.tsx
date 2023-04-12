@@ -1,19 +1,26 @@
-import { AuthForm } from "@widgets/authForm/authForm";
-import { createBrowserRouter } from "react-router-dom";
+import { AuthForm } from '@features/authForm';
+import PageTodo from '@pages/pageTodo';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <AuthForm/>,
-    },
-    // {
-    //   path: "/result",
-    //   element: <PageResult />,
-    // },
-    // {
-    //   path: "/guide/:guide",
-    //   element: <PageGuide />,
-    // },
-  ]);
 
-  export default router
+const publicRoutes = createBrowserRouter([
+  {
+    path: '/',
+    element: <AuthForm />,
+  },
+]);
+
+const privateRoutes = createBrowserRouter([
+  {
+    path: '/',
+    element: <PageTodo />,
+  },
+]);
+
+const WithRouter = () => {
+  const accessToken = localStorage.getItem("accessToken");
+
+  return <RouterProvider router={ accessToken === null || accessToken.length ? privateRoutes : publicRoutes} />;
+};
+
+export default WithRouter;

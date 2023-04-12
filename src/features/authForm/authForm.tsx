@@ -1,9 +1,8 @@
-import { Avatar, Box, Button, FormControl, IconButton, InputAdornment, InputLabel, OutlinedInput, TextField, Typography } from '@mui/material'
 import React, { useState } from 'react'
-import { BoxForm } from './s-authForm'
+import { SForm } from './s-authForm'
 import { authTry, validationSchema } from './api';
 import { useFormik } from 'formik';
-import { VisibilityOff, Visibility } from '@mui/icons-material';
+import { Button, Input } from 'antd';
 
 export const AuthForm = () => {
   const formik = useFormik({
@@ -17,48 +16,43 @@ export const AuthForm = () => {
     },
   }); 
   
-const [showPassword, setShowPassword] = useState(false);
-const handleClickShowPassword = () => setShowPassword(!showPassword);
-const handleMouseDownPassword = () => setShowPassword(!showPassword);
+  const handlerKeyDown = (e: any) => {
+    if (e.key === 'Enter') {
+      formik.handleSubmit();
+    }
+  };
 
   return (
-    <BoxForm onSubmit={formik.handleSubmit}>
-        <TextField 
-          variant="outlined" 
-          id="email"
+    <SForm onSubmitCapture={formik.handleSubmit} onKeyDown={handlerKeyDown}>
+      <SForm.Item
+        help={formik.touched.email && formik.errors.email}
+        validateStatus={formik.touched.email && formik.errors.email ? 'error' : ''}
+        label={formik.initialValues.email}
+      >
+        <Input 
+          placeholder="input with clear icon" 
+          id="email" 
           name="email"
-          label="Введите почту"
-          value={formik.values.email}
-          onChange={formik.handleChange}
-          error={formik.touched.email && Boolean(formik.errors.email)}
-          helperText={formik.touched.email && formik.errors.email}
+          allowClear 
+          onChange={formik.handleChange} 
         />
-        <TextField
-          label='Введите пароль'
-          variant="outlined"
-          id="password"
+      </SForm.Item>
+      <SForm.Item
+        help={formik.touched.password && formik.errors.password}
+        validateStatus={formik.touched.password && formik.errors.password ? 'error' : ''}
+        label={formik.initialValues.password}
+      >
+        <Input 
+          placeholder="input with clear icon" 
+          id="password" 
           name="password"
-          type={showPassword ? "text" : "password"} 
-          value={formik.values.password}
-          onChange={formik.handleChange}
-          error={formik.touched.password && Boolean(formik.errors.password)}
-          helperText={formik.touched.password && formik.errors.password}
-          InputProps={{
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton
-                  aria-label="toggle password visibility"
-                  onClick={handleClickShowPassword}
-                  onMouseDown={handleMouseDownPassword}
-                >
-                  {showPassword ? <Visibility /> : <VisibilityOff />}
-                </IconButton>
-              </InputAdornment>
-            )
-          }}
+          allowClear 
+          onChange={formik.handleChange} 
         />
-
-        <Button variant="contained" type="submit"> Войти </Button>
-    </BoxForm>
+      </SForm.Item>
+      <SForm.Item>
+        <Button disabled={!formik.isValid}>Войти</Button>
+      </SForm.Item>
+    </SForm>
   )
 }
