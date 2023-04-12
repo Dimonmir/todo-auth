@@ -1,0 +1,10 @@
+#root {
+    background-image: url("../src/assets/background.png");
+    background-size: contain;
+}
+
+* {
+    font-style: 'Open Sans';
+    padding: 0;
+    margin: 0;
+}
