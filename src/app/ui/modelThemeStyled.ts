@@ -4,6 +4,7 @@ declare module 'styled-components' {
     export interface DefaultTheme {
         colors: {
             main: string;
+            mainDark: string;
             secondary: string;
             lightGray: string;
             darkGray: string;

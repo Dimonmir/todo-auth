@@ -1,13 +1,7 @@
-import { createGlobalStyle } from 'styled-components';
-
-const GlobalStyle = createGlobalStyle`
-  body {
+body {
     margin: 0;
     padding: 0;
     font-family: 'Roboto', sans-serif;
-    font-size: ${({ theme }) => theme.font.font14}px;
-    font-weight: 400;
-    background-color: ${({ theme }) => theme.colors.lightGray};
   }
 
   /* Reset and base styles  */
@@ -112,7 +106,3 @@ const GlobalStyle = createGlobalStyle`
   legend {
     display: block;
   }
-
-`;
-
-export default GlobalStyle;

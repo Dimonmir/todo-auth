@@ -13,6 +13,7 @@ export default defineConfig({
       '@pages': path.resolve(__dirname, 'src/pages'),
       '@widgets': path.resolve(__dirname, 'src/widgets'),
       '@entities': path.resolve(__dirname, 'src/entities'),
+      '@public': path.resolve(__dirname, 'public'),
     },
   },
   plugins: [react()],

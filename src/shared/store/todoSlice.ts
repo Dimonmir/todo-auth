@@ -6,8 +6,11 @@ export interface IArrTypeTodo {
 
 export interface ITypeTodo {
     id: string
-    text: string
+    title: string
     completed: boolean
+    dataStart: string,
+    dataEnd: string,
+    prior: string,
 }
 
 const initialState:IArrTypeTodo = {todosArr: []}
@@ -16,11 +19,14 @@ const todoSlice = createSlice({
     name: 'todos',
     initialState,
     reducers: {
-        addTodo(state, action:PayloadAction<string>) {
+        addTodo(state, action: PayloadAction<ITypeTodo>) {
             state.todosArr.unshift({
                 id: new Date().toISOString(),
-                text: action.payload,
-                completed: false
+                title: action.payload.title,
+                completed: false,
+                dataStart: action.payload.dataStart,
+                dataEnd: action.payload.dataEnd,
+                prior: action.payload.prior,
             })
         },
         removeTodo(state, action) {

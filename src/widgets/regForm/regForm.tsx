@@ -1,10 +1,9 @@
 import React, { useState } from 'react'
-import { BoxAuth } from './s-authForm'
+import { BoxAuth } from './s-regForm'
 import features from '@features/index'
 import { Avatar, Typography } from 'antd'
 
-export const AuthForm = () => {
-  
+export const RegForm = () => {
   return (
     <BoxAuth>
       <div className="authHeader">
@@ -12,9 +11,9 @@ export const AuthForm = () => {
           size={40}
           icon={<img src={"../../../public/myLogo.jpg"} alt="avatar" />}
         />
-        <Typography.Title level={2} > Авторизация </Typography.Title>
+        <Typography.Title level={2} > Регистрация </Typography.Title>
       </div>
-      <features.AuthForm />
+      <features.RegForm />
     </BoxAuth>
   )
 }

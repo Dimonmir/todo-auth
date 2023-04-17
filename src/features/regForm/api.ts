@@ -2,7 +2,7 @@
 import { addToken, removeToken } from '@entities/session/sessionSlice';
 import { appAuth } from '@/main';
 import { useAppDispatch } from '@/shared/store/redux';
-import { getAuth, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { createUserWithEmailAndPassword, getAuth, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { useDispatch } from 'react-redux';
 import * as yup from 'yup';
 
@@ -15,14 +15,12 @@ export const validationSchema = yup.object({
         .string()
         .min(6, 'Пароль должен быть состоять не менее чем из 6 симовлов')
         .required('Пароль обязателен'),
+    name: yup
+        .string()
+        .required('Пароль обязателен'),
 });
 
-export const authTry = async (email: string, password: string) => {
+export const regTry = async (email: string, password: string) => {
     const auth = getAuth(appAuth);
-    return signInWithEmailAndPassword(auth, email, password)
-}
-
-export const authLogout = async () => {
-    const auth = getAuth(appAuth);
-    return signOut(auth)
+    return  createUserWithEmailAndPassword(auth, email, password)
 }

@@ -1,64 +1,59 @@
 import React, { useState } from 'react'
-import { SForm } from './s-authForm'
-import { authTry, validationSchema } from './api';
+import { SForm } from './s-regForm'
+import { regTry, validationSchema } from './api';
 import { useFormik } from 'formik';
 import { Button, Input, Typography } from 'antd';
 import { useAppDispatch } from '@/shared/store/redux';
 import { addToken } from '@/entities/session/sessionSlice';
-import { useNavigate } from 'react-router-dom';
-import { setDoc, doc, getDoc } from 'firebase/firestore';
-import { db } from '@/main';
 import { IUser, addUser } from '@/shared/store/userSlice';
+import { useNavigate } from 'react-router-dom';
+import { doc, setDoc } from 'firebase/firestore';
+import { db } from '@/main';
 
-export const AuthForm = () => {
+export const RegForm = () => {
 
   const navigate = useNavigate();
 
-  function navigateReg() {
-    navigate('/reg');
+  function navigateAuth() {
+    navigate('/');
   }
 
   const dispatch = useAppDispatch()
 
+  const [req, setReq] = useState("")
   const [err, setErr] = useState("")
 
   const formik = useFormik({
     initialValues: {
       email: '',
       password: '',
+      name: '',
     },
     validationSchema: validationSchema,
     validateOnMount: true,
     onSubmit: (values) => {
-      authTry(values.email, values.password)
-    .then(async (userCredential) => {
-      const {user} = userCredential;
-      return {
-        token: await user.getIdToken(),
-        uid: user.uid
-      }
-    })
-    .then(({token, uid})=>{
-      getDoc(doc(db, "users", uid))
-      .then((userData)=>{
-        if (userData.exists()) {
-          let userAdd: IUser = {
-            name: userData.data().name,
-            mail: userData.data().mail,
-            password: userData.data().password,
-            creationTime: userData.data().creationTime,
-          } 
-          console.log(userData.data())
-          console.log(userAdd)
-          dispatch(addUser(userAdd));
-          dispatch(addToken(token));
-          setErr("");
+      regTry(values.email, values.password).
+        then(async (userCredential) => {
+        const {user} = userCredential;
+        let userAdd:IUser = {
+          uid: user.uid,
+          name: values.name,
+          mail: values.email,
+          password: values.password,
+          creationTime: user.metadata.creationTime
         }
-      })
-    })
-    .catch((error) => {
-      setErr("Введены некорректные данные")
-    });
+        await setDoc(doc(db, "users", user.uid), userAdd)
+        .then(()=>{
+          dispatch(addUser(userAdd));
+          setErr("")
+          setReq("Создание пользователя успешно!")
+          formik.resetForm()
+        })
+        })
+        .catch((error) => {
+          setReq("")
+          setErr("Произошла ошибка")
+      });
     },
   }); 
   
@@ -73,10 +68,30 @@ export const AuthForm = () => {
       {
         err && <Typography.Title level={5} type='danger' className='error'>{err}</Typography.Title>
       }
+      {
+        req && <Typography.Title level={5} type='success' className='error'>{req}</Typography.Title>
+      }
       <SForm.Item
         help={formik.touched.email && formik.errors.email}
         validateStatus={formik.touched.email && formik.errors.email ? 'error' : ''}
         label={formik.initialValues.email}
+        className='authItem'
+      >
+        <Input 
+          placeholder="Введите фио" 
+          id="name" 
+          name="name"
+          allowClear
+          width={"300px"}
+          onChange={formik.handleChange} 
+          className='authInput'
+          value={formik.values.name}
+        />
+      </SForm.Item>
+      <SForm.Item
+        help={formik.touched.name && formik.errors.name}
+        validateStatus={formik.touched.name && formik.errors.name ? 'error' : ''}
+        label={formik.initialValues.name}
         className='authItem'
       >
         <Input 
@@ -87,6 +102,7 @@ export const AuthForm = () => {
           width={"300px"}
           onChange={formik.handleChange} 
           className='authInput'
+          value={formik.values.email}
         />
       </SForm.Item>
       <SForm.Item
@@ -102,12 +118,13 @@ export const AuthForm = () => {
           allowClear 
           onChange={formik.handleChange} 
           className='authInput'
+          value={formik.values.password}
         />
       </SForm.Item>
       <SForm.Item className='authItem'>
-        <Button type="primary" disabled={!formik.isValid} className='authButton' htmlType="submit">Войти</Button>
+        <Button type="primary" disabled={!formik.isValid} className='authButton' htmlType="submit">Зарегистрироватся</Button>
       </SForm.Item>
-      <Typography.Link className='error' onClick={navigateReg}>Зарегистрироватся</Typography.Link>
+      <Typography.Link className='error' onClick={navigateAuth}>Авторизироватся</Typography.Link>
     </SForm>
   )
 }

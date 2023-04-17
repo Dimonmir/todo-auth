@@ -1,3 +1,4 @@
-import * as features from './authForm'
+import {AuthForm} from './authForm'
+import {RegForm} from './regForm'
 
-export default features
+export default { AuthForm, RegForm }

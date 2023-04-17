@@ -5,5 +5,5 @@ export const ContainerFlex = styled('div')`
     gap: 20px;
     justify-content: center;
     align-content: center;
-    align-items: center;
+    align-items: baseline
 `

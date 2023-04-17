@@ -1,15 +1,16 @@
-import { Box } from "@mui/material"
 import styled from "styled-components"
 
-export const SBox = styled(Box)`
+export const SBox = styled("div")`
     margin-top: 30px;
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    
-    .formTextField{
-        width: 50%
+    margin-bottom: 30px;
+    display: grid;
+    grid-template-columns: 3fr 2fr 1fr 1fr; 
+    grid-gap: 20px 40px;
+
+    button {
+        height: 50px !important;
     }
+
     @media (max-width: 576px) {
         flex-direction: column;
         gap: 20px;
