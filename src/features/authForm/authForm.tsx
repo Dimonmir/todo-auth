@@ -43,6 +43,7 @@ export const AuthForm = () => {
       .then((userData)=>{
         if (userData.exists()) {
           let userAdd: IUser = {
+            uid: userData.data().uid,
             name: userData.data().name,
             mail: userData.data().mail,
             password: userData.data().password,

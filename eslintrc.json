@@ -1,116 +1,116 @@
 {
-    "env": {
-        "browser": true,
-        "es2021": true
-    },
-    "overrides": [{
-        "files": [
-            "src/**/*.slice.ts"
-        ],
-        "rules": {
-            "no-param-reassign": [
-                "error",
-                {
-                    "props": false
-                }
-            ]
-        }
-    }],
-    "extends": [
-        "react-app",
-        "airbnb",
-        "airbnb-typescript",
-        "airbnb/hooks",
-        "plugin:@typescript-eslint/recommended",
-        "plugin:prettier/recommended"
-    ],
-    "parser": "@typescript-eslint/parser",
-    "parserOptions": {
-        "ecmaFeatures": {
-            "jsx": true
-        },
-        "ecmaVersion": "latest",
-        "project": "./tsconfig.json",
-        "sourceType": "module"
-    },
-    "plugins": [
-        "react",
-        "@typescript-eslint"
-    ],
-    "rules": {
-
-        "import/no-extraneous-dependencies": [
-            "error",
-            {
-                "devDependencies": true
-            }
-        ],
-        "react/react-in-jsx-scope": "off",
-        "react/require-default-props": "off",
-        "react/jsx-props-no-spreading": "off",
-        "react/function-component-definition": "off",
-        "react/prop-types": "off",
-        "react-hooks/exhaustive-deps": "off",
-        "import/extensions": "off",
-        "import/prefer-default-export": "off",
-        "max-len": [
-            "error",
-            {
-                "code": 120
-            }
-        ],
-        "no-mixed-spaces-and-tabs": [
-            "error"
-        ],
-        "no-console": [
-            "error"
-        ],
-        "no-alert": [
-            "error"
-        ],
-        "no-multi-spaces": [
-            "error"
-        ],
-        "semi": "error",
-        "eslint-disable-next-line": "off",
-        "no-restricted-imports": [
-            "error",
-            {
-                "patterns": [
-                    "@shared/*/*",
-                    "@entities/*/*",
-                    "@features/*/*",
-                    "@widgets/*/*",
-                    "@pages/*/*",
-                    "@processes/*/*",
-                    "@app/*/*"
-                ]
-            }
-        ],
-        "import/order": [
-            "error",
-            {
-                "groups": [
-                    "builtin",
-                    "external",
-                    "internal"
-                ],
-                "newlines-between": "always"
-            }
-        ],
-        "no-duplicate-imports": "error",
-        "no-unused-vars": "off",
-        "@typescript-eslint/no-unused-vars": [
-            "error"
-        ],
-        "comma-dangle": [
-            "error",
-            {
-                "arrays": "only-multiline",
-                "objects": "only-multiline",
-                "imports": "only-multiline",
-                "exports": "only-multiline"
-            }
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "overrides": [
+    {
+      "files": ["src/**/*.slice.ts"],
+      "rules": {
+        "no-param-reassign": [
+          "error",
+          {
+            "props": false
+          }
         ]
+      }
+    },
+    {
+      "files": ["src/shared/assets/**/*"],
+      "rules": {
+        "max-len": [
+          "error",
+          {
+            "ignoreStrings": true
+          }
+        ]
+      }
     }
+  ],
+  "extends": [
+    "react-app",
+    "airbnb",
+    "airbnb-typescript",
+    "airbnb/hooks",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "project": "./tsconfig.json",
+    "sourceType": "module"
+  },
+  "plugins": ["react", "@typescript-eslint"],
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "endOfLine": "auto",
+        "singleQuote": true
+      }
+    ],
+    "import/no-extraneous-dependencies": [
+      "error",
+      {
+        "devDependencies": false
+      }
+    ],
+    "react/react-in-jsx-scope": "off",
+    "react/require-default-props": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/function-component-definition": "off",
+    "react/prop-types": "off",
+    "react-hooks/exhaustive-deps": "off",
+    "import/extensions": "off",
+    "import/prefer-default-export": "off",
+    "max-len": [
+      "error",
+      {
+        "code": 100
+      }
+    ],
+    "no-mixed-spaces-and-tabs": ["error"],
+    "no-console": ["warn"],
+    "no-alert": ["error"],
+    "no-multi-spaces": ["error"],
+    "semi": "error",
+    "eslint-disable-next-line": "off",
+    "no-restricted-imports": [
+      "error",
+      {
+        "patterns": [
+          "@shared/*/*",
+          "@entities/*/*",
+          "@features/*/*",
+          "@widgets/*/*",
+          "@pages/*/*",
+          "@processes/*/*",
+          "@app/*/*"
+        ]
+      }
+    ],
+    "import/order": [
+      "error",
+      {
+        "groups": ["builtin", "external", "internal"],
+        "newlines-between": "always"
+      }
+    ],
+    "no-duplicate-imports": "error",
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": ["warn"],
+    "comma-dangle": [
+      "error",
+      {
+        "arrays": "only-multiline",
+        "objects": "only-multiline",
+        "imports": "only-multiline",
+        "exports": "only-multiline"
+      }
+    ]
+  }
 }

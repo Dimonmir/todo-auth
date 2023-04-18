@@ -1,5 +1,6 @@
 import { Button, Input, ThemeConfig } from "antd";
 import styledTheme from "./themeStyled";
+import Title from "antd/es/typography/Title";
 
 export const mainTheme:ThemeConfig = {
   token: {

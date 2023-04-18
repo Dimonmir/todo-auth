@@ -5,9 +5,10 @@ export interface IArrTypeTodo {
 }
 
 export interface ITypeTodo {
+    userId: string
     id: string
-    title: string
-    completed: boolean
+    title: string,
+    completed: boolean,
     dataStart: string,
     dataEnd: string,
     prior: string,
@@ -21,7 +22,8 @@ const todoSlice = createSlice({
     reducers: {
         addTodo(state, action: PayloadAction<ITypeTodo>) {
             state.todosArr.unshift({
-                id: new Date().toISOString(),
+                userId: action.payload.id,
+                id: action.payload.id,
                 title: action.payload.title,
                 completed: false,
                 dataStart: action.payload.dataStart,
@@ -39,11 +41,13 @@ const todoSlice = createSlice({
                     todo.completed = !todo.completed
                 }
             })
+        },
+        removeAllTodo(state) {
+            state.todosArr =[]
         }
-
     }
 })
 
-export const {addTodo, removeTodo, toggleTodo} =  todoSlice.actions;
+export const {addTodo, removeTodo, toggleTodo, removeAllTodo} =  todoSlice.actions;
 
 export default todoSlice.reducer

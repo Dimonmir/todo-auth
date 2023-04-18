@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { addTodo } from "@/shared/store/todoSlice";
+import { ITypeTodo, addTodo } from "@/shared/store/todoSlice";
 import { useAppDispatch, useAppSelector } from "@/shared/store/redux";
 import { Button, DatePicker, DatePickerProps, Grid, Input, Select } from "antd";
 import { SBox } from "./s-form";
@@ -17,21 +17,24 @@ export default function Form() {
 
     const user = useAppSelector(store => store.user)
     const dispatch = useAppDispatch()
-
+    console.log(user)
     async function handleAdd(){
-        let todoAdd:ITodo = {
-
+        console.log(valueRange)
+        let todoAdd:ITypeTodo = {
+            userId: user.uid,
+            id: Math.random().toString(36).substr(2, 14),
+            title: valueText,
+            completed: false,
+            dataStart: valueRange[0],
+            dataEnd: valueRange[1],
+            prior: valueSelect,
         }
-        await setDoc(doc(db, "users", user.uid), userAdd)
+        await setDoc(doc(db, "todo", todoAdd.id), todoAdd)
         .then(()=>{
-            dispatch(addTodo(valueText))
-        })
-        .catch((error) => {
-          setReq("")
-          setErr("Произошла ошибка")
-      });
+            console.log(todoAdd)
+            dispatch(addTodo(todoAdd))
+        });
         setValueText("")
-        setValueRange(['', ''])
         setValueSelect("medium")
     }
 
@@ -51,8 +54,7 @@ export default function Form() {
                 className="formTextField"
             />
             <RangePicker
-                showTime={{ format: 'HH:mm' }}
-                format="YYYY-MM-DD HH:mm"
+                format="YYYY-MM-DD"
                 onChange={handlerDataPicker}
             />
             <Select

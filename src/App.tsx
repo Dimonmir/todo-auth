@@ -6,6 +6,7 @@ import { ThemeProvider } from 'styled-components';
 import { ConfigProvider } from 'antd';
 import { mainTheme } from './app/ui/theme';
 import { PersistGate } from 'redux-persist/integration/react';
+import GlobalStyle from './app/ui/globalStyled';
 
 
 
@@ -15,6 +16,7 @@ function App() {
       <PersistGate loading={null} persistor={persistor}>
         <ThemeProvider theme={styledTheme}>
           <ConfigProvider theme={mainTheme}>
+            <GlobalStyle />
             <WithRouter />
           </ConfigProvider>
         </ThemeProvider>
