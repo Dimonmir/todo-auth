@@ -35,7 +35,6 @@ const todoSlice = createSlice({
             state.todosArr = state.todosArr.filter(todo => todo.id !== action.payload.id)
         },
         toggleTodo(state, action) {
-            console.log(action)
             state.todosArr.map((todo) => {
                 if (todo.id === action.payload.id) {
                     todo.completed = !todo.completed

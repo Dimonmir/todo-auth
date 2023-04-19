@@ -1,13 +1,14 @@
 import styled from "styled-components";
 
-export const ContainerTodoItem = styled('div')`
+export const ContainerTodoItem = styled.div.attrs((props: {itemComplited: boolean, itemPast: boolean}) => props)`
     margin-top: 30px;
-    border: 1px solid blue;
+    border: 1px solid ${(props)=> props.itemComplited ? "green" : props.itemPast ?  "red" : "blue" };
     border-radius: 10px;
-    padding: 20px;
+    padding: 20px 40px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
 
     .boxFlexContainer{
         display: flex;
