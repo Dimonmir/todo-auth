@@ -59,7 +59,7 @@ export default function Form() {
                 onChange={handlerDataPicker}
                 placement="bottomLeft"
                 onFocus={blur}
-                inputReadOnly={false}
+                inputReadOnly={true}
             />
             <Select
                 defaultValue={valueSelect}
