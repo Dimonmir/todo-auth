@@ -17,6 +17,7 @@ export const validationSchema = yup.object({
         .required('Пароль обязателен'),
     name: yup
         .string()
+        .max(30, 'Слишком длинное имя')
         .required('Пароль обязателен'),
 });
 
