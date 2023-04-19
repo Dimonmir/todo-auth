@@ -106,3 +106,10 @@ body {
   legend {
     display: block;
   }
+
+  @media (max-width: 576px) {
+    .ant-picker-panels {
+        flex-direction: column !important;
+    }
+  }
+    

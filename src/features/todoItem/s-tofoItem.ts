@@ -37,4 +37,20 @@ export const ContainerTodoItem = styled.div.attrs((props: {itemComplited: boolea
     .body{
         text-align: center;
     }
+
+    @media (max-width: 576px) {
+        padding: 3% 3%;
+        margin-top: 5%;  
+        .boxFlexContainer{
+            gap: 10%;
+        }
+
+        .boxFlex{
+            gap: 5%;
+
+                & .driver {
+                flex: 1 1 20%;
+            }
+        }
+    }
 `

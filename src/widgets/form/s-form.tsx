@@ -10,12 +10,13 @@ export const SBox = styled("div")`
     button {
         height: 50px !important;
     }
+    .range {
+        height: 50px !important;
+    }
 
     @media (max-width: 576px) {
-        flex-direction: column;
-        gap: 20px;
-        .formTextField{
-            width: 100%
-        }
+        grid-template-columns: 1fr; 
+        grid-gap: 5%;
+        margin-bottom: 15%;
     }
 `

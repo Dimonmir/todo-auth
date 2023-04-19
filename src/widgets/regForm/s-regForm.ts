@@ -20,4 +20,7 @@ export const BoxAuth = styled('div')`
         justify-content: center;
         gap: 20px;
     }
+    @media (max-width: 576px) {
+        width: 80%;
+    }
 `

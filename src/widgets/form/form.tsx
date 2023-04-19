@@ -54,8 +54,10 @@ export default function Form() {
                 className="formTextField"
             />
             <RangePicker
+                className="range"
                 format="YYYY-MM-DD"
                 onChange={handlerDataPicker}
+                placement="bottomLeft"
             />
             <Select
                 defaultValue={valueSelect}

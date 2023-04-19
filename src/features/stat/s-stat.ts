@@ -8,6 +8,9 @@ export const SBox = styled.div`
     & > * {
         flex: 0 1 15%;
     }
+     @media (max-width: 576px) {
+        flex-direction: column;
+    }
 `
 
 export const CBox = styled.div`
