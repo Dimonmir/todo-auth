@@ -9,7 +9,7 @@ export const RegForm = () => {
       <div className="authHeader">
         <Avatar
           size={40}
-          icon={<img src={"../../../public/myLogo.jpg"} alt="avatar" />}
+          icon={<img src={"/myLogo.jpg"} alt="avatar" />}
         />
         <Typography.Title level={2} > Регистрация </Typography.Title>
       </div>

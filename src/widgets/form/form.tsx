@@ -58,6 +58,7 @@ export default function Form() {
                 format="YYYY-MM-DD"
                 onChange={handlerDataPicker}
                 placement="bottomLeft"
+                onFocus={blur}
             />
             <Select
                 defaultValue={valueSelect}
