@@ -19,7 +19,6 @@ export default function Form() {
     const dispatch = useAppDispatch()
     console.log(user)
     async function handleAdd(){
-        console.log(valueRange)
         let todoAdd:ITypeTodo = {
             userId: user.uid,
             id: Math.random().toString(36).substr(2, 14),
@@ -31,7 +30,6 @@ export default function Form() {
         }
         await setDoc(doc(db, "todo", todoAdd.id), todoAdd)
         .then(()=>{
-            console.log(todoAdd)
             dispatch(addTodo(todoAdd))
         });
         setValueText("")
@@ -41,8 +39,6 @@ export default function Form() {
     const handlerDataPicker = (value: DatePickerProps['value'] | RangePickerProps['value'], dateString: [string, string] | string) => {
         setValueRange([dateString[0], dateString[1]])
     }
-
-    console.log(valueRange)
 
     return (
         <SBox>

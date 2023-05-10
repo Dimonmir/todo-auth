@@ -5,6 +5,7 @@ import { useAppDispatch } from '@/shared/store/redux';
 import { getAuth, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { useDispatch } from 'react-redux';
 import * as yup from 'yup';
+import { createAsyncThunk } from '@reduxjs/toolkit';
 
 export const validationSchema = yup.object({
     email: yup

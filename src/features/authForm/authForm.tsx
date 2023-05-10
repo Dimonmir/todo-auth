@@ -49,8 +49,6 @@ export const AuthForm = () => {
             password: userData.data().password,
             creationTime: userData.data().creationTime,
           } 
-          console.log(userData.data())
-          console.log(userAdd)
           dispatch(addUser(userAdd));
           dispatch(addToken(token));
           setErr("");
