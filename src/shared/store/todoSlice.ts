@@ -45,11 +45,6 @@ const todoSlice = createSlice({
             state.todosArr =[]
         }
     },
-    extraReducers: (builder) => {
-    builder.addCase(logout.fulfilled, (state) => {
-      state.accessToken = '';
-      state.refreshToken = '';
-    });
 })
 
 export const {addTodo, removeTodo, toggleTodo, removeAllTodo} =  todoSlice.actions;
